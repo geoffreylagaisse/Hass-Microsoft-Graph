@@ -32,23 +32,44 @@ Home Assistant authenticates with Microsoft through OAuth2. Set up your credenti
 
 You will need to register an application in Azure AD and retrieve the client ID and client secret:
 
-- Register a new application in [Azure AD](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)
-  - Name your app
+
+#### MS Azure account set up
+- Register a new application in Azure AD, Click “New Registration”
+  - URL: https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade
+  - Name your application
   - Select "Accounts in any organizational directory (Any Azure AD directory - Multitenant)" under supported account types
-  - For home-assistant versions before 2022.07: For Redirect URI, add: `https://<EXTERNAL_HOME_ASSISTANT_URL>/auth/external/callback`
-  - For home-assistant versions from 2022.07 and following: For Redirect URI, add: `https://my.home-assistant.io/redirect/oauth`
-- Copy your Application (client) ID for later use
-- On the App Page, navigate to "Certificates & secrets"
-  - Generate a new client secret and *save for later use* (you will *not* be able to see this again)
+  - Ignore Redirect URI (for now), click “Register”
+- You will now be on the “Overview” page for your app, copy the “Application (client) ID” value and save it for later
+- In the left menu, select “Authentication”
+  - Click “Add a platform”
+  - Select “Web”
+  - Add **https://<EXTERNAL_HOME_ASSISTANT_URL>:PORT/auth/external/callback**
+  - Click the “Configure” button
+  - Still In the Authentications Tab, select “Add URI” 
+  - Paste in **https://my.home-assistant.io/redirect/oauth**
+  - Scroll down and ticket “Access tokens” and “ID Tokens” check boxes
+  - Scroll down further, select the “Accounts in any organizational directory (Any Azure AD directory - Multitenant)” radio button
+  - Click the “Save” button
+- In the left menu, select “Certificates & secrets”
+  - Click “New client secret”
+  - Set a description and expiration date (max 24 months), click the “add” button
+  - You will now be presented a ‘value’ and ‘secret ID’. Copy the **"value"** field and save it for later
+- In the left menu, select “API Permissions”
+  - Click “Add a Permission”
+  - Select “Microsoft Graph”
+  - Select “Delegated Permissions”
+  - Search for Presence.Read, expand “Presence” and select “Presence.Read” and “Presence.Read.All”
+  - Search for User.Read, expand “User” and select “User.Read” and “User.ReadBasic.All”
+  - Click the “Add permissions” button
+- **You are done with Azure**
 
-Then set the relevant permissions on the application on the API Permissions page. All of the following are required to function correctly:
 
-- Presence.Read
-- User.Read
 
-Add the client id and secret in the configuration flow through **Configuration -> Integrations -> Microsoft Graph**:
+#### Home Assistant Setup
+- Go to settings > Devices & services > Add Integration > Microsoft Graph
+- Input your **ClientID** and **Secret Value** from earlier, click “next”
+- A new tab will open with “Link account to Home Assistant?”, Click “Link account”
 
-And Finish setup in the UI through.
 
 ### Sensor
 
