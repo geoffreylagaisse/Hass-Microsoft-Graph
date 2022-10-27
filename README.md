@@ -58,8 +58,8 @@ You will need to register an application in Azure AD and retrieve the client ID 
   - Click “Add a Permission”
   - Select “Microsoft Graph”
   - Select “Delegated Permissions”
-  - Search for Presence.Read, expand “Presence” and select “Presence.Read” and “Presence.Read.All”
-  - Search for User.Read, expand “User” and select “User.Read” and “User.ReadBasic.All”
+  - Search for Presence.Read, expand “Presence” and select “Presence.Read”
+  - Search for User.Read, expand “User” and select “User.Read” 
   - Click the “Add permissions” button
 - **You are done with Azure**
 
