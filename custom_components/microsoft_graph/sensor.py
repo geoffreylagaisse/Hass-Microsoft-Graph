@@ -3,7 +3,7 @@ from functools import partial
 
 from homeassistant.core import callback
 from homeassistant.helpers.entity_registry import (
-    async_get_registry as async_get_entity_registry,
+    async_get as async_get_entity_registry,
 )
 from homeassistant.helpers.typing import HomeAssistantType
 
