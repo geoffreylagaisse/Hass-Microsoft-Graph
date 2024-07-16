@@ -5,7 +5,7 @@ from homeassistant.core import callback
 from homeassistant.helpers.entity_registry import (
     async_get as async_get_entity_registry,
 )
-from homeassistant.helpers.typing import HomeAssistantType
+from homeassistant.core import HomeAssistant
 
 from . import GraphUpdateCoordinator
 from .base_sensor import GraphBaseSensorEntity
@@ -14,7 +14,7 @@ from .const import DOMAIN
 MICROSOFT_TEAMS_ATTRIBUTES = ["availability", "activity"]
 
 
-async def async_setup_entry(hass: HomeAssistantType, config_entry, async_add_entities):
+async def async_setup_entry(hass: HomeAssistant, config_entry, async_add_entities):
     """Set up Graph presence."""
     coordinator: GraphUpdateCoordinator = hass.data[DOMAIN][config_entry.entry_id][
         "coordinator"
