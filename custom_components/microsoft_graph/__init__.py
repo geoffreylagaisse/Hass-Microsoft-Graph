@@ -15,7 +15,6 @@ from homeassistant.helpers import (
     config_entry_oauth2_flow,
 )
 from homeassistant.const import CONF_CLIENT_ID, CONF_CLIENT_SECRET
-from homeassistant.helpers.typing import HomeAssistantType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 from . import api, config_flow
@@ -113,7 +112,7 @@ class GraphUpdateCoordinator(DataUpdateCoordinator):
 
     def __init__(
         self,
-        hass: HomeAssistantType,
+        hass: HomeAssistant,
         client: GraphApiClient,
     ) -> None:
         """Initialize."""
