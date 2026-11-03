@@ -1,7 +1,6 @@
 """Config flow for Microsoft Graph."""
 import logging
 
-from homeassistant import config_entries
 from homeassistant.helpers import config_entry_oauth2_flow
 from homeassistant.const import CONF_CLIENT_ID, CONF_CLIENT_SECRET
 import voluptuous as vol
@@ -17,7 +16,6 @@ class OAuth2FlowHandler(
     """Config flow to handle Microsoft Graph OAuth2 authentication."""
 
     DOMAIN = DOMAIN
-    CONNECTION_CLASS = config_entries.CONN_CLASS_CLOUD_POLL
 
     @property
     def logger(self) -> logging.Logger:
